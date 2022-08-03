@@ -2,10 +2,26 @@
     --grid-rows: 1;
     --grid-columns: 1;
 }
+
+body,html {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+}
 .grid-container {
     display: grid;
     grid-template-columns: repeat( var(--grid-columns), 1fr);
     grid-template-rows: repeat( var(--grid-rows), 1fr);
+    justify-content: center;
+    align-content: center;
+    height: 89.85vh;
 }
 
 .grid-item {
