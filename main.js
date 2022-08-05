@@ -1,7 +1,10 @@
+const container = document.querySelector('.container');
 const gridCon = document.querySelector('.grid-container');
+const h1 = document.querySelector('.h1');
+const btn = document.querySelector('.button')
 
 makeGrid(16, 16);
-
+newSketch();
 
 
 //Creates a 16x16 grid
@@ -22,8 +25,25 @@ gridCon.addEventListener('mouseover', function(e) {
         e.target.classList.add('selected');
     }
 });
+
+ 
+function newSketch() {
+    btn.addEventListener('click', e => {
+        btn.remove();
+        h1.remove();
         
-    
+        const sketchSize = document.createElement('h2');
+        sketchSize.classList.add('sketchSize');
+        sketchSize.textContent = 'Choose New Sketch Size';
+        container.append(sketchSize);
+
+        const input = document.createElement('input');
+        input.classList.add('input');
+        Object.assign(input, {class: 'input', type: 'number', min: '1', max: '100'});
+        container.append(input);
+
+    });
+}
 
     
     
