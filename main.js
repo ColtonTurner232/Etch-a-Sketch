@@ -46,12 +46,12 @@ function newSketch() {
         //Takes user number and creates new grid
         input.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                let uIn = document.getElementById('number').value;
-                if (uIn > 50 || uIn < 1) {
+                let userNum = document.getElementById('number').value;
+                if (userNum > 50 || userNum < 1) {
                     return false;
                 }
                 else {
-                    makeGrid(uIn, uIn);
+                    makeGrid(userNum, userNum);
                 }
             }
         })
