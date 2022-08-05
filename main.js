@@ -37,6 +37,11 @@ function newSketch() {
         sketchSize.textContent = 'Choose New Sketch Size';
         container.append(sketchSize);
 
+        const parameters = document.createElement('h3');
+        parameters.classList.add('parameters');
+        parameters.textContent = 'Maximum number size is 50';
+        container.append(parameters); 
+
         //Creates number input
         const input = document.createElement('input');
         input.classList.add('input');
