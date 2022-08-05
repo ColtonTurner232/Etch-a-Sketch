@@ -26,7 +26,7 @@ gridCon.addEventListener('mouseover', function(e) {
     }
 });
 
- 
+//Function that asks for new grid size and creates it
 function newSketch() {
     btn.addEventListener('click', e => {
         btn.remove();
@@ -37,13 +37,28 @@ function newSketch() {
         sketchSize.textContent = 'Choose New Sketch Size';
         container.append(sketchSize);
 
+        //Creates number input
         const input = document.createElement('input');
         input.classList.add('input');
-        Object.assign(input, {class: 'input', type: 'number', min: '1', max: '100'});
+        Object.assign(input, {id: 'number', type: 'number', min: '1', max: '50'});
         container.append(input);
+
+        //Takes user number and creates new grid
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                let uIn = document.getElementById('number').value;
+                if (uIn > 50 || uIn < 1) {
+                    return false;
+                }
+                else {
+                    makeGrid(uIn, uIn);
+                }
+            }
+        })
 
     });
 }
+
 
     
     
