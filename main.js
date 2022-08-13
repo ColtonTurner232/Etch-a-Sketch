@@ -1,11 +1,18 @@
 const container = document.querySelector('.container');
 const gridCon = document.querySelector('.grid-container');
 const h1 = document.querySelector('.h1');
-const btn = document.querySelector('.button')
+const btn = document.querySelector('.button');
 
 makeGrid(16, 16);
 newSketch();
 
+//Changes the color of a single grid when hovered over
+gridCon.addEventListener('mouseover', function(e) {
+    //Looks for class and adds selected
+    if (e.target.matches('.grid-item')) {
+        e.target.classList.add('selected');
+    }
+});
 
 //Creates a 16x16 grid
 function makeGrid(rows, columns) {
@@ -18,20 +25,38 @@ function makeGrid(rows, columns) {
     };
 };
 
-//Changes the color of a single grid when hovered over
-gridCon.addEventListener('mouseover', function(e) {
-    //Looks for class and adds selected
-    if (e.target.matches('.grid-item')) {
-        e.target.classList.add('selected');
-    }
-});
+function newGrid(rows, columns) {
+    let script = document.querySelector("script");
+    let newGridCon = document.createElement('div');
+
+    newGridCon.classList.add('gird-container');
+    newGridCon.setAttribute('id', 'grid-container');
+    document.body.insertBefore(newGridCon, script);
+
+    newGridCon.style.setProperty('--grid-rows', rows);
+    newGridCon.style.setProperty('--grid-columns', columns);
+    //Loops through and creates a new div grids
+    for (i = 0; i < (rows * columns); i++) {
+        let cell = document.createElement("div");
+        newGridCon.appendChild(cell).className = "grid-item";
+    };
+
+    newGridCon.addEventListener('mouseover', function(e) {
+        //Looks for class and adds selected
+        if (e.target.matches('.grid-item')) {
+            e.target.classList.add('selected');
+        }
+    });
+};
 
 //Function that asks for new grid size and creates it
 function newSketch() {
     btn.addEventListener('click', e => {
+        
         btn.remove();
         h1.remove();
-        
+        gridCon.remove();
+
         const sketchSize = document.createElement('h2');
         sketchSize.classList.add('sketchSize');
         sketchSize.textContent = 'Choose New Sketch Size';
@@ -56,16 +81,12 @@ function newSketch() {
                     return false;
                 }
                 else {
-                    makeGrid(userNum, userNum);
+                    input.remove();
+                    sketchSize.remove();
+                    parameters.remove();
+                    newGrid(userNum, userNum)
                 }
             }
         })
-
     });
 }
-
-
-    
-    
-
-
