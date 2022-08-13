@@ -64,20 +64,20 @@ function newSketch() {
 
         const parameters = document.createElement('h3');
         parameters.classList.add('parameters');
-        parameters.textContent = 'Maximum number size is 50';
+        parameters.textContent = 'Maximum number size is 100';
         container.append(parameters); 
 
         //Creates number input
         const input = document.createElement('input');
         input.classList.add('input');
-        Object.assign(input, {id: 'number', type: 'number', min: '1', max: '50'});
+        Object.assign(input, {id: 'number', type: 'number', min: '1', max: '100'});
         container.append(input);
 
         //Takes user number and creates new grid
         input.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 let userNum = document.getElementById('number').value;
-                if (userNum > 50 || userNum < 1) {
+                if (userNum > 100 || userNum < 1) {
                     return false;
                 }
                 else {
